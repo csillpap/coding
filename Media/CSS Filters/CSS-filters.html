@@ -1,0 +1,67 @@
+<!DOCTYPE>
+<html>
+	<head>
+	
+		<meta charset="UTF-8">
+		<title>CSS Filters</title>
+		<style type="text/css">
+			body {
+				font-size: 0;
+			}
+			div {
+				display: inline-block;
+				vertical-align: top;
+				width: 47%;
+				background-color: #FEE0C6;
+				padding: 10px;
+				border: 2px solid #FF7F24;
+				font-size: 15px;
+				height: 400px;
+				
+			}
+			img {
+				float: right;
+				margin: 0 10px 10px 0;
+				border: 1px solid #FF7F24;
+			}
+			#grayscale-pic {
+				-webkit-filter: grayscale(.8);
+			}
+			#sepia-pic {
+				-webkit-filter: sepia(100%);
+			}
+			#hue-rotate-pic {
+				-webkit-filter: hue-rotate(90deg);
+			}
+			#contrast-brightness-pic {
+				-webkit-filter: contrast(200%) brightness(200%);
+			}
+		</style>
+	
+	</head>
+
+	<body>
+		<div>
+			<h2>Grayscale</h2>
+			<img id="grayscale-pic" src="images/norfolkterrier.jpg" width="250" height="250" alt="Norfolk Terrier">
+		</div>
+		<div>
+			<h2>Sepia</h2>
+			<img id="sepia-pic" src="images/norfolkterrier.jpg" width="250" height="250" alt="Norfolk Terrier">
+		</div>
+		<div>
+			<h2>Hue-rotate</h2>
+			<img id="hue-rotate-pic" src="images/norfolkterrier.jpg" width="250" height="250" alt="Norfolk Terrier">
+		</div>
+		<div>
+			<h2>Contrast Brightness</h2>
+			<img id="contrast-brightness-pic" src="images/norfolkterrier.jpg" width="250" height="250" alt="Norfolk Terrier">
+		</div>
+	</body>
+
+
+
+
+
+
+</html>
