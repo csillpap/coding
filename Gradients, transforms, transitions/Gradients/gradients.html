@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title>My Gradients Page</title>
+		<style>
+			
+			body {
+				font-family: sans-serif;
+			}
+			h1 {
+				text-align: center;
+				margin: 30px auto 50px;
+			}
+			
+			div { 
+				margin: 20px auto 0;
+				width: 700px; 
+				height: 150px; 
+				}
+			#linear1 {
+				background: linear-gradient(to right, #BA7DAA, #5A18C2); 
+			}
+			#linear2 {
+				background: linear-gradient(to left, #100E06, #C29E18);
+			}
+			#multiple {
+				background: linear-gradient(-45deg, #D0CE21, #D0216A, #110229);
+			}
+			#transparent {
+				background: linear-gradient(to right, rgba(101,163,177,0.5), pink);
+			}
+			#radial {
+				background: radial-gradient(#D0CE21 30%, #D04E21 70%);
+				height: 400px;
+			}
+			#gradient5 {
+				background: linear-gradient(to right, red, orange, yellow, green, blue);
+				text-align: center;
+				font-size: 40px;
+				padding: 60px 0;
+				height: 40px;
+				border-top-left-radius: 25px;
+				border-top-right-radius: 25px;
+			}
+			#gradient6 {
+				background-color: #F2E29B;
+				width: 750px;
+				height: 200px;
+			}
+			#radial-box-shadow {
+				background: radial-gradient(#D4C391, #BC9872, #E07A15);
+				box-shadow: 10px 10px 10px #888888;
+				text-shadow: 10px 10px 10px #888888;
+				text-align: center;
+				padding: 50px;
+				border: 4px solid black;
+				border-top-left-radius: 25px;
+				border-top-right-radius: 25px;
+				font-size: 40px;
+				width: 500px;
+				margin: auto;
+				height: 40px;
+				position: relative;
+				top: 30px;
+			}
+			p {
+				text-align: center;
+				margin-top: 0;
+				margin-bottom: 20px;
+			}
+		</style>
+	</head>
+	<body>
+
+		<h1>My Gradients Page</h1>
+		<div id='linear1'></div>
+		<p>Linear Gradient</p>
+		<div id='linear2'></div>
+		<p>Linear Gradient</p>
+		<div id='multiple'></div>
+		<p>Multiple Color Stop Gradient</p>
+		<div id='transparent'></div>
+		<p>Transparency</p>
+		<div id='radial'></div>
+		<p>Radial Gradient</p>
+		<div id='gradient5'>A box with gradient</div>
+		<div id='gradient6'>
+			<p id='radial-box-shadow'>A box with gradient</p>
+		</div>
+		
+	</body>
+	
+</html>
