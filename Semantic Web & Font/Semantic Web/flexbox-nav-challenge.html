@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Semantic Web</title>
+		<link rel="stylesheet" type="text/css" href="reset.css">
+		<link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+		<link href='http://fonts.googleapis.com/css?family=Dosis' rel='stylesheet' type='text/css'>
+		<style type="text/css">
+		body {
+			background-color: #F5D76E;
+		}
+		nav{
+			font-family: roboto;
+			margin: 30px auto;
+			width: 100%;
+			display: flex;
+			flex-direction: column;
+			align-items:stretch;
+			border-radius: 10px;
+			padding: 0;	
+		}
+				
+		a{
+			text-decoration: none;
+			color: white;
+			flex:1;
+			height: 30px;
+			font-family: Dosis;
+			padding:20px 20px 20px 20px;
+			text-align: center;
+			font-size: 2em;
+			border-bottom:1px solid white;
+		}
+		#logoNav{
+			font-size: 2em;
+			font-weight: bold;
+			}
+		#landing {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			align-items: center;
+		}
+		#landing-message {
+			font-family: Dosis;
+			font-size: 60px;
+			margin: 50px;
+			text-align: center;
+		}
+
+		@media screen and (min-width: 700px){
+			nav {
+				/*Code goes here*/
+				display: flexbox;
+				flex-direction: row;
+			}
+			a{
+			/*Code goes here*/
+				border: none;
+			}
+			#logoNav{
+			/*Code goes here*/
+				flex: 4;
+				text-align: left;
+			}
+			#landing {
+				display: flex;
+				flex-direction: row;
+				margin: 100px auto;
+			}
+			#landing-message {
+				font-family: Dosis;
+				font-size: 60px;
+				margin: 50px;
+				text-align: center;
+			}
+		}
+
+		</style>
+</head>
+<body>
+
+	<nav>
+		
+			<a id="logoNav">CHOCOBLOCK</a>
+			<a href="#">Home</a>
+			<a href="#">Projects</a>
+			<a href="#">About</a>
+			<a href="#">Contact</a>
+			<a href="#">Photos</a>
+		
+
+	</nav>
+	<section id="landing">
+	
+		<div id="landing-message"><h2>Make Creative Clever Fun Apps. Simple.</h2></div>
+		<div id="landing-graphic"><img src="images/laptop.png" alt="Image of laptop"></div>
+	
+	
+	</section>
+
+</body>
+</html>
