@@ -26,11 +26,11 @@
             padding: 4px 15px;
         }
             
-        label.field{
-            display: block;
+        .field{
+            display: inline-block;
             text-align: right;
             width: 100px;
-            float: left;
+			padding: 6px 8px;
 
         }
         input{
@@ -38,9 +38,7 @@
             border-radius: 5px;
             padding: 6px 8px;
         }
-        .field{
-            padding: 6px 8px;
-        }
+        
 
         #currency{
              width: 220px;
@@ -65,13 +63,33 @@
    <body>
    
 		<div id="container">
-			<form>
-				<div>First Name:</div><input type="text" id="fname"  name="fname"/>
-                <div>Password: </div><input id="password" name="password" type="password" />
-                <div>Email:</div><input id="email" name="email"  type="email" />
-                <div>Website:</div><input id="website" name="website" type="url" />
-                <input  type="submit" class="submit" value="submit"/>
-			</form>
+			
+			    <form>
+					<fieldset>
+						
+						<legend>Registration</legend>
+				
+						<label for="fname" class="field">First Name:</label> 
+						<input type="text" id="fname"  name="fname" placeholder="Enter your first name"/>
+						
+						<label for="password" class="field">Password:</label>
+						<input id="password" name="password" type="password" placeholder="8 characters minimum"/>
+						
+						<label for="email" class="field">Email:</label>
+						<input id="email" name="email"  type="email" placeholder="Enter your email here"/>
+						
+						<label for="telephone" class ="field">Telephone:</label>
+						<input id="telephone" name="telephone" placeholder="digits only"/>
+						
+						<label for="website" class="field">Website:</label>
+						<input id="website" name="website" type="url" placeholder="Enter full url"/>
+						
+						<label for="submit" class="field">Submit</label>
+						<input  type="submit" class="submit" value="submit"/>
+						
+					</fieldset>
+				</form>
+			
 		</div>
 	
    </body>
