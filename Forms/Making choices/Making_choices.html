@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html>
+   <head>
+   <meta charset="UTF-8">
+      <title>Forms</title>
+      <link href='http://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+   
+      <!--
+         Form with HTML5 tags and basic CSS
+      -->
+      <style type="text/css">
+
+		body{
+			font-family: 'Roboto', sans-serif;
+		}
+        #container{
+            width: 550px;
+            margin: 30px auto;
+        }
+
+            
+        .field, legend {
+            display: inline-block;
+            text-align: left;
+            width: 120px;
+			padding: 6px 8px;
+			
+        }
+        input{
+            width: 200px;
+            border-radius: 5px;
+            padding: 6px 8px;
+        }
+        
+		fieldset {
+        margin-bottom: 5px;
+        border: none;
+    }
+    h1 {
+        font-size: 30px;
+        background-color: #fff;
+        border-radius: 5px;
+        border: 1px solid #999;
+        padding: 4px 15px;
+        width: 160px;
+    }
+        
+
+        form{
+            width: 450px;
+            border: 1px solid #999;
+            border-radius: 20px;
+            clear: both;
+            padding: 20px;
+            margin-bottom: 50px;
+            background-color:rgba(129, 187, 201,.2);
+
+        }
+		#dropdown {
+			padding-left: 0px;
+		}
+		#datalist {
+			padding-left: 0px;
+		}
+		#zodiac_signs {
+        width: 220px;
+        border-radius: 5px;
+        padding: 6px 8px;
+		}
+		#checkbox {
+			padding: 6px 8px 6px 0;;
+			margin-top: 50px;
+		}
+		#checkbox input {
+			width: 25px;
+			margin-top: 20px;
+		}
+		#radio {
+			padding: 6px 8px 6px 0;
+		}
+		#radio input {
+			width: 25px;
+			margin-top: 10px;
+		}
+		.submit {
+			display: block;
+			width: 60%;
+			margin: auto;
+		}
+		#range_input {
+			padding-left: 0;
+		}
+		
+		#range_label {
+			display: block;
+			text-align: left;
+			width: 120px;
+			float: left;
+			clear: both;
+			padding: 6px 8px;
+		}
+      </style>
+	  
+   </head>
+   
+   <body>
+   
+		<div id="container">
+			
+			    <form>
+					<fieldset>
+						
+						<h1>Registration</h1>
+				
+						<label for="fname" class="field">First Name:</label> 
+						<input type="text" id="fname"  name="fname" placeholder="Enter your first name"/>
+						
+						<label for="sname" class="field">Surname:</label> 
+						<input type="text" id="sname"  name="sname" placeholder="Enter your surname"/>
+						
+						<label for="age" class="field">Age:</label>
+						<input id="age" name="age" type="number" min="0" max="120" placeholder="Choose your age"/>
+						
+						<label for="email" class="field">Email:</label>
+						<input id="email" name="email"  required="" type="email" autofocus placeholder="Enter your email here"/>
+						
+						<label for="telephone" class ="field">Telephone:</label>
+						<input id="telephone" name="telephone" type="tel" pattern="[0-9] {11}" title="Mobile number expected beginning 07*********" placeholder="Mobile telephone number"/>
+						
+						<label for="website" class="field">Website:</label>
+						<input id="website" name="website" type="url" placeholder="Enter full url"/>
+						
+						<label for="passport" class="field">Passport:</label>
+						<input id="passport" name="passport" type="text" pattern="[0-9]{9}" title="Nine numbers." placeholder="Enter your passport number"/>
+						
+						<label for="postcode" class="field">Postcode:</label>
+						<input id="postcode" name="postcode" type="text" pattern="[A-Z]{2}[0-9]{2}[A-Z]{2}" title="use uppercase" placeholder="Enter your postcode"/>
+						
+						<label for="credit_card" class="field">Credit Card:</label>
+						<input id="credit_card" name="credit_card" type="text" pattern="[0-9]{16}" title="16-digit number" placeholder="Enter credit card number"/>
+						
+						<label for="date" class="field"> Date:</label>
+						<input id="date" name="date" type="date" />
+						
+						<label for="password" class="field">Password:</label>
+						<input id="password" name="password" required="" type="password" pattern=".{8,}" title="Eight or more characters" placeholder="8 characters minimum"/>
+						
+						<fieldset id="checkbox">
+							<legend> Would you like:</legend>
+							<input id="starter" type="checkbox" value="starter" />
+							<label for="starter">Starter</label>
+							<input id="main" type="checkbox" value="main" />
+							<label for="main">Main</label>
+							<input id="desert" type="checkbox" value="desert" />
+							<label for="desert">Desert</label>
+						</fieldset>
+						
+						<fieldset id="radio">
+							<legend>Gender:</legend>
+							<input id="male" type="radio" name="gender" value="male" />
+							<label for="male">Male</label>
+							<input id="female" type="radio" name="gender" value="female" />
+							<label for="female">Female</label>
+							<input id="other" type="radio" name="gender" value="other" />
+							<label for="other">Other</label>
+						</fieldset>
+						
+						<fieldset id="dropdown">
+							<legend>Zodiac signs</legend>
+							<select id="zodiac_signs">
+								<option value="aries">Aries</option>
+								<option value="gemini">Gemini</option>
+								<option value="cancer">Cancer</option>
+								<option value="virgo">Virgo</option>
+								<option value="leo">Leo</option>
+								<option value="scorpio">Scorpio</option>
+								<option value="sagittarius">Sagittarius</option>
+								<option value="capricorn">Capricorn</option>
+								<option value="aquarius">Aquarius</option>
+								<option value="pisces">Pisces</option>
+							</select>
+						</fieldset>
+						
+						<fieldset id="datalist">
+							<legend>Music Genre:</legend>
+							<input list="music_genre" name="music_genre" placeholder="type for autofill selections">
+							<datalist id="music_genre">
+								<option value="Indie">
+								<option value="Dance">
+								<option value="Folk">
+								<option value="Rock">
+								<option value="Punk">
+							</datalist>
+						</fieldset>
+						
+						<fieldset id="range_input">
+							<label id="range_label" for="range">Range:</label>
+							<input id="range" type="range" name="range" min="0" max="11">
+						</fieldset>
+						
+						<input type="submit" class="submit" value="Submit"/>
+						
+					</fieldset>
+				</form>
+			
+		</div>
+	
+   </body>
+
+</html>
