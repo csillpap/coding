@@ -1,5 +1,6 @@
 import unittest
 import boggle
+from string import ascii_uppercase
 
 
 class TestBoggle(unittest.TestCase):
@@ -21,3 +22,8 @@ class TestBoggle(unittest.TestCase):
         self.assertTrue((1, 0) in grid)
         self.assertTrue((1, 1) in grid)
         self.assertTrue((2, 2) not in grid)
+
+    def test_grid_is_filled_with_letters(self):
+        grid = boggle.make_grid(2, 3)
+        for L in grid.values():
+            self.assertTrue(L in ascii_uppercase)
