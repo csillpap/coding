@@ -63,3 +63,6 @@ def main():
     for word in words:
         print word
     print "Found {0} words".format(len(words))
+
+
+main()
