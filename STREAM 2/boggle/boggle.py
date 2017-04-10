@@ -58,7 +58,7 @@ def get_dictionary(dictionary_file):
 
 def main():
     grid = make_grid(3, 3)
-    dictionary = get_dictionary('/usr/share/dict/words')
+    dictionary = get_dictionary('words.txt')
     words = search(grid, dictionary)
     for word in words:
         print word
