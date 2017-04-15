@@ -56,12 +56,20 @@ def search(grid, dictionary):
 
 
 def get_dictionary(dictionary_file):
+    full_words, stems = set(), set()
+
     with open(dictionary_file) as f:
-        return {w.strip().upper() for w in f}
+        for word in f:
+            word = word.strip().upper()
+            full_words.add(word)
+
+            for i in range(1, len(word)):
+                stems.add(word[:i])
+    return full_words, stems
 
 
 def main():
-    grid = make_grid(3, 3)
+    grid = make_grid(4, 4)
     dictionary = get_dictionary('words.txt')
     words = search(grid, dictionary)
     display_words(words)
