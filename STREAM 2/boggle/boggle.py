@@ -60,6 +60,10 @@ def main():
     grid = make_grid(3, 3)
     dictionary = get_dictionary('words.txt')
     words = search(grid, dictionary)
+    display_words(words)
+
+
+def display_words(words):
     for word in words:
         print word
     print "Found {0} words".format(len(words))
