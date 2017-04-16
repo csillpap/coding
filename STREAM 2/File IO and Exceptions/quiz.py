@@ -1,6 +1,4 @@
 def get_questions():
-    questions, answers = [], []
     with open('questions.txt') as f:
-        for i, line in enumerate(f):
-            answers.append(line.strip()) if i % 2 else questions.append(line)
-    return zip(questions, answers)
+        lines = f.readlines()
+    return [(lines[i], lines[i+1].strip()) for i in range(0, len(lines), 2)]
