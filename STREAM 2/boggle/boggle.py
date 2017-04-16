@@ -37,11 +37,14 @@ def is_a_real_word(word, dictionary):
 def search(grid, dictionary):
     neighbours = all_grid_neighbours(grid)
     paths = []
+    full_words, stems = dictionary
 
     def do_search(path):
         word = path_to_word(grid, path)
-        if is_a_real_word(word, dictionary):
+        if is_a_real_word(word, full_words):
             paths.append(path)
+        if word not in stems:
+            return
         for next_pos in neighbours[path[-1]]:
             if next_pos not in path:
                 do_search(path + [next_pos])
