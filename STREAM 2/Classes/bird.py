@@ -20,4 +20,6 @@ class Parrot(Bird):
 
 
 parrot = Parrot()
+parrot.learn_phrase("I'm a pretty polly")
+parrot.learn_phrase("Who's a pretty boy, then?")
 parrot.do_call()
