@@ -38,4 +38,5 @@ Thumbs.db
 
 untitled/
 .idea/
-.pyc
+
+*.pyc
