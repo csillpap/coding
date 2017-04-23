@@ -29,3 +29,10 @@ print columns
 # profiles table and print them out
 columns = db.get_columns_for_table('profiles')
 print columns
+
+
+# Challenge 2
+# Get all the available columns for our
+# orders table and print them out
+columns = db.get_columns_for_table('orders')
+print columns
