@@ -22,3 +22,10 @@ print tables
 # articles table and print them out
 columns = db.get_columns_for_table('articles')
 print columns
+
+
+# Challenge 1
+# Get all the available columns for our
+# profiles table and print them out
+columns = db.get_columns_for_table('profiles')
+print columns
