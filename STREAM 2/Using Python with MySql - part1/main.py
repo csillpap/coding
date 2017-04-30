@@ -110,3 +110,8 @@ person = db.select('people', named_tuples=True)[0]
 
 db.update('profiles', where="person_id=%s" % person.id,
           address="1a another street")
+
+
+# Deleting a record
+person = db.select('people',named_tuples=True)[0]
+db.delete('orders', person_id="=%s" % person.id, id="=1")
