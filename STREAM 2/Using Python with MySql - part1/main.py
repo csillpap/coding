@@ -74,9 +74,17 @@ db.delete('orders', id="=3")
 # We can also use multiple WHERE clauses!
 db.delete('orders', id=">4", amount=">1")
 
+
 # Get all the records from
 # the people table
 results = db.select('people')
 
 for row in results:
     print row
+
+# Selecting columns with named tuples
+results = db.select('people',
+                    columns=['id', 'first_name'], named_tuples=True)
+
+for row in results:
+    print row.id, row.first_name
