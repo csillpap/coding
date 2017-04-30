@@ -82,12 +82,14 @@ results = db.select('people')
 for row in results:
     print row
 
+
 # Selecting columns with named tuples
 results = db.select('people',
                     columns=['id', 'first_name'], named_tuples=True)
 
 for row in results:
     print row.id, row.first_name
+
 
 # We can also do more complex queries using `CONCAT`
 # and `SUM`
@@ -115,3 +117,17 @@ db.update('profiles', where="person_id=%s" % person.id,
 # Deleting a record
 person = db.select('people',named_tuples=True)[0]
 db.delete('orders', person_id="=%s" % person.id, id="=1")
+
+
+# Using Python with MySql 3 - Challenge A
+# Using the AVG(), select a person from your people table and get the average amount they spend
+# at the same time, create a column that reads, “[first_name] spends “.
+# Then print out the columns to provide the answers in the terminal.
+people = db.select('people', columns=["CONCAT(first_name, ' spends')" \
+                                      " AS first_name_spends", "AVG(amount)" \
+                                                       " AS average_spend"],
+                   named_tuples=True, where="first_name='Bea'",
+                   join="orders ON people.id=orders.person_id")
+
+for person in people:
+    print person.first_name_spends, person.average_spend, " on average"
