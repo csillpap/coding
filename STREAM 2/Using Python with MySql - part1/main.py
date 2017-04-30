@@ -103,3 +103,10 @@ for person in people:
 
 # Inserting an order
 db.insert('orders', person_id="2", amount="120.00")
+
+
+# Updating a person
+person = db.select('people', named_tuples=True)[0]
+
+db.update('profiles', where="person_id=%s" % person.id,
+          address="1a another street")
