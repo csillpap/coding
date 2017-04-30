@@ -88,3 +88,14 @@ results = db.select('people',
 
 for row in results:
     print row.id, row.first_name
+
+# We can also do more complex queries using `CONCAT`
+# and `SUM`
+people = db.select('people', columns=["CONCAT(first_name, ' ', second_name)" \
+                                      " AS full_name", "SUM(amount)" \
+                                                       " AS total_spend"],
+                   named_tuples=True, where="people.id=1",
+                   join="orders ON people.id=orders.person_id")
+
+for person in people:
+    print person.full_name, "spent ", person.total_spend
