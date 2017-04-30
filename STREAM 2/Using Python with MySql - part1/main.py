@@ -121,7 +121,7 @@ db.delete('orders', person_id="=%s" % person.id, id="=1")
 
 # Using Python with MySql 3 - Challenge A
 # Using the AVG(), select a person from your people table and get the average amount they spend
-# at the same time, create a column that reads, “[first_name] spends “.
+# at the same time, create a column that reads "first_name spends"
 # Then print out the columns to provide the answers in the terminal.
 people = db.select('people', columns=["CONCAT(first_name, ' spends')" \
                                       " AS first_name_spends", "AVG(amount)" \
@@ -131,3 +131,16 @@ people = db.select('people', columns=["CONCAT(first_name, ' spends')" \
 
 for person in people:
     print person.first_name_spends, person.average_spend, " on average"
+
+
+# Using Python with MySql 3 - Challenge B
+# Create a new person in the people table and add in a profile row and two orders of random value.
+db.insert('people', first_name='Adam', second_name='Smith', DOB='STR_TO_DATE("02-03-1980", "%d-%m-%Y")')
+# for updating the profiles table for Adam we need to get his id
+adam = db.select('people', ["id", "first_name"], where="first_name='Adam'", named_tuples=True)
+adam = adam[0]
+db.update('profiles', where="person_id=%s" % adam.id,
+          address="Bournemouth")
+# adding two orders for Adam
+db.insert('orders', person_id="%s" % adam.id, amount="59.00")
+db.insert('orders', person_id="%s" % adam.id, amount="150.00")
