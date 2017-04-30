@@ -139,8 +139,21 @@ db.insert('people', first_name='Adam', second_name='Smith', DOB='STR_TO_DATE("02
 # for updating the profiles table for Adam we need to get his id
 adam = db.select('people', ["id", "first_name"], where="first_name='Adam'", named_tuples=True)
 adam = adam[0]
-db.update('profiles', where="person_id=%s" % adam.id,
+db.update('profiles', person_id="%s" % adam.id,
           address="Bournemouth")
 # adding two orders for Adam
 db.insert('orders', person_id="%s" % adam.id, amount="59.00")
 db.insert('orders', person_id="%s" % adam.id, amount="150.00")
+
+
+# Using Python with MySql 3 - Challenge C
+# Once you have added them in use select to get their full name
+# and the minimum amount they have spent.
+people = db.select('people', columns=["CONCAT(first_name, ' ', second_name)" \
+                                      " AS full_name", "MIN(amount)" \
+                                                       " AS min_spend"],
+                   named_tuples=True, where="people.id='%s'" % adam.id,
+                   join="orders ON people.id=orders.person_id")
+
+for person in people:
+    print "The minimum spend of", person.full_name, "was", person.min_spend
