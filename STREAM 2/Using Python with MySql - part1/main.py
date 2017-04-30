@@ -99,3 +99,7 @@ people = db.select('people', columns=["CONCAT(first_name, ' ', second_name)" \
 
 for person in people:
     print person.full_name, "spent ", person.total_spend
+
+
+# Inserting an order
+db.insert('orders', person_id="2", amount="120.00")
