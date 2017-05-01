@@ -11,3 +11,4 @@ plt.plot(x2, y2, label='Second Line')
 
 plt.xlabel('Plot Number')
 plt.ylabel('Important var')
+plt.title('Interesting Graph\nCheck it out')
