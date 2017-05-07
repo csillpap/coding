@@ -21,3 +21,7 @@ print re.findall("a.c", "acc")                  # ['acc']
 print re.findall("a.*c", "abc")                 # ['abc']
 print re.findall("a.*c", "abbc")                # ['abbc']
 print re.findall("a.*c", "ac")                  # ['ac']
+
+# Using re.search()
+results = re.search("ab*c", "ABC", re.IGNORECASE)
+print results.group()
