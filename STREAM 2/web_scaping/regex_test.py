@@ -7,3 +7,6 @@ print re.findall("ab*c", "acc")  # ['ac']
 print re.findall("ab*c", "abcac")  # ['abc', 'ac']
 print re.findall("ab*c", "abdc")  # []
 print re.findall("ab*c", "ABC")  # [] case sensitive
+
+# Using re.IGNORECASE
+print re.findall("ab*c", "ABC", re.IGNORECASE)  # ['ABC']
