@@ -25,3 +25,10 @@ print re.findall("a.*c", "ac")                  # ['ac']
 # Using re.search()
 results = re.search("ab*c", "ABC", re.IGNORECASE)
 print results.group()
+
+
+a_string = "Everything we do is <replaced> if it is indeed inside <tags>."
+
+# Substitute the tags with 'coming up roses' using the re.sub() method
+a_string = re.sub("<.*>", "coming up roses", a_string)
+print a_string
