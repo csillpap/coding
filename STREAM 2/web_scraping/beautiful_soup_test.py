@@ -10,3 +10,5 @@ html_text = html_page.read()
 # Pass the HTML to the BeautifulSoup constructor.
 # The second argument tells beautifulsoup which parser to use
 soup = BeautifulSoup(html_text, "lxml")
+
+print soup.get_text().encode("utf-8")
