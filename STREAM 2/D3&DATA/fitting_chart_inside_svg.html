@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+	<style>
+		body {
+		  font: 16px sans-serif;
+		}
+	</style>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+
+<body>
+	 <script>
+	 
+		//create variables for svg width height and spacing
+		var svgWidth = 500;
+		var svgHeight = 300;
+		var spacing= 25;
+		
+		//create array
+		var myData = [ 10, 15, 20, 30, 45, 50, 40, 45 ,50 , 40, 10, 15, 20, 30, 45, ];
+		
+		//apply values to svg
+		var svg = d3.select("body")
+					.append("svg")
+					.attr("width",500)
+					.attr("height",300)
+					.attr("style","background-color:#ddd"); /* added some style*/
+					
+		//create rectangles	
+		svg.selectAll("rect")
+		   .data(myData)
+		   .enter()
+		   .append("rect")  
+		   .attr("fill", "#30C5C7")
+		   .attr("x", function(d, i) {
+				return i * (svgWidth / myData.length); /* multiply the index by the width  --keeps scale */
+				})
+		   .attr("y", function(d){return 300 - d * 5;})
+		   .attr("width", (svgWidth / myData.length) - spacing) /*keeps scale */
+		   .attr("height", function(d){return d * 5;});
+	 </script>
+	
+</body>
+
+</html>
