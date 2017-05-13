@@ -18,6 +18,9 @@
 			font-family: dosis;   /* we need to import this font*/
 			font-weight: bold;  
 		}
+		.hidden {
+			display: none;  
+		}
 	</style>
 	<script src="https://d3js.org/d3.v3.min.js"></script>
 </head>
@@ -54,19 +57,26 @@
 		// add our own Tooltip feature by appending a div to the body
 		var tooltip = d3.select("body")
                         .append("div")
-                        .attr("id","tooltip");
+                        .attr("id","tooltip")
+						.classed("hidden",true);
 					
 		//create rectangles	
 		svg.selectAll("rect")
 		   .data(myData)
 		   .enter()
 		   .append("rect")  
-		   .on("mouseover", function(d){	
+		   .on("mouseover", function(d){        
 				d3.select("#tooltip")
-				  .style("left", d3.event.pageX + "px")
-				  .style("top", d3.event.pageY - 50 + "px");
-				tooltip.html(d);
-			})
+				  .classed("hidden", false)
+				  .style("left", d3.event.pageX - 10 + "px")
+				  .style("top", d3.event.pageY - 70 + "px");
+				tooltip.html(d);            
+				})
+ 
+		   .on("mouseout", function(){       
+				d3.select("#tooltip")
+				  .classed("hidden", true);               
+				})
 		   .attr("fill", function(d){return(colorScale(d));}) // replace the color with our color scale
 		   .attr("x", function(d, i) {
 				return i * (svgWidth / myData.length); /* multiply the index by the width  --keeps scale */
