@@ -10,6 +10,14 @@
 		rect:hover {
 			fill: #FFA623;  /* fill with a yellow */
 		}
+		#tooltip {
+			position: absolute;
+			padding: 5px 10px;
+			background: white;
+			border-radius: 3px;
+			font-family: dosis;   /* we need to import this font*/
+			font-weight: bold;  
+		}
 	</style>
 	<script src="https://d3js.org/d3.v3.min.js"></script>
 </head>
@@ -42,12 +50,20 @@
 					.attr("width",500)
 					.attr("height",300)
 					.attr("style","background-color:#ddd"); /* added some style*/
+		
+		// add our own Tooltip feature by appending a div to the body
+		var tooltip = d3.select("body")
+                        .append("div")
+                        .attr("id","tooltip");
 					
 		//create rectangles	
 		svg.selectAll("rect")
 		   .data(myData)
 		   .enter()
 		   .append("rect")  
+		   .on("mouseover", function(d){        
+					tooltip.html(d);        /* using tooltip the variable here*/        
+				})
 		   .attr("fill", function(d){return(colorScale(d));}) // replace the color with our color scale
 		   .attr("x", function(d, i) {
 				return i * (svgWidth / myData.length); /* multiply the index by the width  --keeps scale */
