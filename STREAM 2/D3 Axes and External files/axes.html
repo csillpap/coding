@@ -70,10 +70,14 @@
                         .append("div")
                         .attr("id","tooltip")
 						.classed("hidden",true);
-		
+						
+		// create yAxisScale to turn the y axis upside down				
+		var yAxisScale = d3.scale.linear()
+                           .domain([0, d3.max(myData, function(d) {return d;})])
+                           .range([svgHeight , 0]);
 		// create y axis
 		var yAxis = d3.svg.axis()
-                      .scale(heightScale)
+                      .scale(yAxisScale)
                       .orient("left")
                       .ticks(5);
 					
