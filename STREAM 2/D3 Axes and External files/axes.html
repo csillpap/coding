@@ -52,19 +52,21 @@
 		var myData = [ 10, 15, 20, 30, 45, 50, 40, 45 ,50 , 40, 10, 15, 20, 30, 45, ];
 		myData.sort()
 		
+		var maxData = d3.max(myData);
+		
 		// create scale
 		var heightScale = d3.scale.linear()
-                            .domain([0,d3.max(myData)])
+                            .domain([0,maxData])
                             .range([0,svgHeight]); 
 		
 		// create yAxisScale to turn the y axis upside down				
 		var yAxisScale = d3.scale.linear()
-                           .domain([0, d3.max(myData, function(d) {return d;})])
+                           .domain([0, maxData])
                            .range([svgHeight , 0]);
 		
 		// apply colors
 		var colorScale = d3.scale.linear()
-                           .domain([0,d3.max(myData)])
+                           .domain([0,maxData])
                            .range(["blue","red"]);
 		
 		// add our own Tooltip feature by appending a div to the body
