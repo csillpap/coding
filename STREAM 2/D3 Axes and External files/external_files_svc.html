@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+	<style>
+		body {
+		  font: 16px sans-serif;
+		}
+		
+		rect:hover {
+			fill: #FFA623;  /* fill with a yellow */
+		}
+		#tooltip {
+			position: absolute;
+			padding: 5px 10px;
+			background: white;
+			border-radius: 3px;
+			font-family: dosis;   /* we need to import this font*/
+			font-weight: bold;  
+			box-shadow: 10px 10px 5px #BA4444;
+		}
+		.hidden {
+			display: none;  
+		}
+		.axis text {
+			font: 10px sans-serif;
+		}
+		 
+		.axis path,
+		.axis line {
+			fill: none;
+			stroke: #000;
+			shape-rendering: crispEdges;
+		}
+	</style>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+
+<body>
+	 <script>
+		
+		//create variables for svg width height and spacing
+		var svgWidth = 500;
+		var svgHeight = 300;
+		var spacing= 2;
+		
+		var margin = {top: 50, right: 0, bottom: 50, left: 50};
+		var canvasWidth = svgWidth + margin.right + margin.left;
+		var canvasHeight = svgHeight + margin.top + margin.bottom;
+		
+		d3.csv("list.csv", function(error, myData) {
+				myData.forEach(function(d) {
+					d.username = d.username;
+					d.score = +d.highscore;   //the + here converts to a number
+				});
+				
+		
+		var maxData = d3.max(myData, function(d){return d.score;});
+		
+		// create scale
+		var heightScale = d3.scale.linear()
+                            .domain([0,maxData])
+                            .range([0,svgHeight]); 
+		
+		// create yAxisScale to turn the y axis upside down				
+		var yAxisScale = d3.scale.linear()
+                           .domain([0, maxData])
+                           .range([svgHeight , 0]);
+		
+		// apply colors
+		var colorScale = d3.scale.linear()
+                           .domain([0,maxData])
+                           .range(["blue","red"]);
+		
+		// add our own Tooltip feature by appending a div to the body
+		var tooltip = d3.select("body")
+                        .append("div")
+                        .attr("id","tooltip")
+						.classed("hidden",true);
+		
+		// create y axis
+		var yAxis = d3.svg.axis()
+                      .scale(yAxisScale)
+                      .orient("left")
+                      .ticks(5);
+		
+		// create canvas
+		var canvas = d3.select("body")
+					   .append("svg")
+					   .attr("width",canvasWidth)
+					   .attr("height",canvasHeight)
+					   .attr("style","background-color:#ddd"); /* added some style*/
+			
+		canvas.append("g")
+			  .attr("class","axis")  // style axis via CSS
+			  .attr("transform","translate("+ (margin.left - 2) +"," + margin.bottom + ")")
+			  .call(yAxis);
+ 
+		var svg = canvas.append("g")
+						.attr("width",svgWidth)
+						.attr("height",svgHeight)
+						.attr("style","background-color:#ddd") /* added some style*/
+						.attr("transform","translate("+ margin.left +"," + margin.bottom + ")");
+					
+		//create rectangles	
+		svg.selectAll("rect")
+		   .data(myData)
+		   .enter()
+		   .append("rect")  
+		   .on("mouseover", function(d){        
+				d3.select("#tooltip")
+				  .classed("hidden", false)
+				  .style("left", d3.event.pageX - 10 + "px")
+				  .style("top", d3.event.pageY - 70 + "px");
+				tooltip.html(d.score);            
+				})
+ 
+		   .on("mouseout", function(){       
+				d3.select("#tooltip")
+				  .classed("hidden", true);               
+				})
+		   .attr("fill", function(d){return(colorScale(d.score));}) // replace the color with our color scale
+		   .attr("x", function(d, i) {
+				return i * (svgWidth / myData.length); /* multiply the index by the width  --keeps scale */
+				})
+		   .attr("y", function(d){return svgHeight - (heightScale(d.score));})   /* flip the chart */
+		   .attr("width", (svgWidth / myData.length) - spacing) /*keeps scale */
+		   .attr("height", function(d){return(heightScale(d.score));})
+		   .append("title")     /*code for default tooltip */
+		   .text(function(d){return d});
+		   
+			}); 
+		
+	 </script>
+	
+</body>
+
+</html>
