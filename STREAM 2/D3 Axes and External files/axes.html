@@ -36,7 +36,7 @@
 		
 		//create array
 		var myData = [ 10, 15, 20, 30, 45, 50, 40, 45 ,50 , 40, 10, 15, 20, 30, 45, ];
-		myData.sort(d3.descending); // sort the graph in decending order
+		myData.sort()
 		
 		// create scale
 		var heightScale = d3.scale.linear()
@@ -95,6 +95,7 @@
 		   .text(function(d){return d});
 		 // generate the y axis
 		svg.append("g")
+		   .attr("transform","translate(35,0)")
            .call(yAxis);
 	 </script>
 	
