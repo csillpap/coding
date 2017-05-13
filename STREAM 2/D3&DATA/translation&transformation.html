@@ -16,7 +16,7 @@
 		//create variables for svg width height and spacing
 		var svgWidth = 500;
 		var svgHeight = 300;
-		var spacing= 25;
+		var spacing= 2;
 		
 		//create array
 		var myData = [ 10, 15, 20, 30, 45, 50, 40, 45 ,50 , 40, 10, 15, 20, 30, 45, ];
@@ -28,18 +28,30 @@
 					.attr("height",svgHeight)
 					.attr("style","background-color:#ddd"); /* added some style*/
 					
+		// group elements together	
+		var g = svg.append('g')
+				   .attr("transform","translate(0,-20)"); // apply transformation
+					
 		//create rectangles	
-		svg.selectAll("rect")
-		   .data(myData)
-		   .enter()
-		   .append("rect")  
-		   .attr("fill", "#30C5C7")
-		   .attr("x", function(d, i) {
+		g.selectAll("rect")
+		 .data(myData)
+		 .enter()
+		 .append("rect")
+		 .attr("x", 0)  // set x, y and width, height to 0, so we can apply a transition
+		 .attr("y", 0)
+         .attr("width", 0)  
+         .attr("height", 0)
+		 .style("opacity", 0)// adds zero   opacity on transsition start
+         .transition().duration(5000)
+		 .style("opacity", 1)//at transition end, full opacity returns
+		 .attr("fill", "#30C5C7")
+		 .attr("x", function(d, i) {
 				return i * (svgWidth / myData.length); /* multiply the index by the width  --keeps scale */
 				})
-		   .attr("y", function(d){return svgHeight - d * 5;})
-		   .attr("width", (svgWidth / myData.length) - spacing) /*keeps scale */
-		   .attr("height", function(d){return d * 5;});
+		 .attr("y", function(d){return svgHeight - d * 5;})
+		 .attr("width", (svgWidth / myData.length) - spacing) /*keeps scale */
+		 .attr("height", function(d){return d * 5;});
+		   
 	 </script>
 	
 </body>
