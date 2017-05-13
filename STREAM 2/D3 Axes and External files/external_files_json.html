@@ -66,6 +66,11 @@
 		var yAxisScale = d3.scale.linear()
                            .domain([0, maxData])
                            .range([svgHeight , 0]);
+						   
+		// create xAxisScale 
+		var xAxisScale = d3.scale.ordinal()
+						   .domain(myData.map(function(d) { return d.username; }))
+						   .rangeBands([0, svgWidth]);
 		
 		// apply colors
 		var colorScale = d3.scale.linear()
@@ -83,6 +88,12 @@
                       .scale(yAxisScale)
                       .orient("left")
                       .ticks(5);
+					  
+		// create x axis
+		var xAxis = d3.svg.axis()
+			          .scale(xAxisScale)
+					  .orient("bottom")
+					  .ticks(myData.length);
 		
 		// create canvas
 		var canvas = d3.select("body")
@@ -95,6 +106,12 @@
 			  .attr("class","axis")  // style axis via CSS
 			  .attr("transform","translate("+ (margin.left - 2) +"," + margin.bottom + ")")
 			  .call(yAxis);
+			  
+		canvas.append("g")
+			  .attr("class", "axis")
+			  .attr("transform", "translate("+ margin.left +","+ (canvasHeight - 
+				(margin.bottom - 2)) + ")")
+              .call(xAxis);
  
 		var svg = canvas.append("g")
 						.attr("width",svgWidth)
