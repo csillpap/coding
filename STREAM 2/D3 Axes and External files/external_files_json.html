@@ -112,12 +112,22 @@
 			  .attr("transform", "translate("+ margin.left +","+ (canvasHeight - 
 				(margin.bottom - 2)) + ")")
               .call(xAxis);
+			  
+		// add a label
+		canvas.append("g")
+			.append("text")
+			.text("Bar Chart")
+			.attr("x", canvasWidth / 2)
+			.attr("y", 30)
+			.attr("class","title");
  
 		var svg = canvas.append("g")
 						.attr("width",svgWidth)
 						.attr("height",svgHeight)
 						.attr("style","background-color:#ddd") /* added some style*/
 						.attr("transform","translate("+ margin.left +"," + margin.bottom + ")");
+						
+		
 					
 		//create rectangles	
 		svg.selectAll("rect")
