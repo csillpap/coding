@@ -21,6 +21,11 @@
 		//create array
 		var myData = [ 10, 15, 20, 30, 45, 50, 40, 45 ,50 , 40, 10, 15, 20, 30, 45, ];
 		
+		// create scale
+		var heightScale = d3.scale.linear()
+                            .domain([0,d3.max(myData)])
+                            .range([0,svgHeight]); 
+							
 		//apply values to svg
 		var svg = d3.select("body")
 					.append("svg")
@@ -37,9 +42,9 @@
 		   .attr("x", function(d, i) {
 				return i * (svgWidth / myData.length); /* multiply the index by the width  --keeps scale */
 				})
-		   .attr("y", function(d){return 300 - d * 5;})
+		   .attr("y", function(d){return svgHeight - (heightScale(d));})   /* flip the chart */
 		   .attr("width", (svgWidth / myData.length) - spacing) /*keeps scale */
-		   .attr("height", function(d){return d * 5;});
+		   .attr("height", function(d){return(heightScale(d));})
 	 </script>
 	
 </body>
