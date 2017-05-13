@@ -61,9 +61,12 @@
 		   .data(myData)
 		   .enter()
 		   .append("rect")  
-		   .on("mouseover", function(d){        
-					tooltip.html(d);        /* using tooltip the variable here*/        
-				})
+		   .on("mouseover", function(d){	
+				d3.select("#tooltip")
+				  .style("left", d3.event.pageX + "px")
+				  .style("top", d3.event.pageY - 50 + "px");
+				tooltip.html(d);
+			})
 		   .attr("fill", function(d){return(colorScale(d));}) // replace the color with our color scale
 		   .attr("x", function(d, i) {
 				return i * (svgWidth / myData.length); /* multiply the index by the width  --keeps scale */
