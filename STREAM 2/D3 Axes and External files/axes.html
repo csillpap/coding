@@ -38,11 +38,15 @@
 
 <body>
 	 <script>
-	 
+		
 		//create variables for svg width height and spacing
 		var svgWidth = 500;
 		var svgHeight = 300;
 		var spacing= 2;
+		
+		var margin = {top: 50, right: 0, bottom: 50, left: 50};
+		var canvasWidth = svgWidth + margin.right + margin.left;
+		var canvasHeight = svgHeight + margin.top + margin.bottom;
 		
 		//create array
 		var myData = [ 10, 15, 20, 30, 45, 50, 40, 45 ,50 , 40, 10, 15, 20, 30, 45, ];
@@ -53,33 +57,45 @@
                             .domain([0,d3.max(myData)])
                             .range([0,svgHeight]); 
 		
+		// create yAxisScale to turn the y axis upside down				
+		var yAxisScale = d3.scale.linear()
+                           .domain([0, d3.max(myData, function(d) {return d;})])
+                           .range([svgHeight , 0]);
+		
 		// apply colors
 		var colorScale = d3.scale.linear()
                            .domain([0,d3.max(myData)])
                            .range(["blue","red"]);
-		
-		//apply values to svg
-		var svg = d3.select("body")
-					.append("svg")
-					.attr("width",500)
-					.attr("height",300)
-					.attr("style","background-color:#ddd"); /* added some style*/
 		
 		// add our own Tooltip feature by appending a div to the body
 		var tooltip = d3.select("body")
                         .append("div")
                         .attr("id","tooltip")
 						.classed("hidden",true);
-						
-		// create yAxisScale to turn the y axis upside down				
-		var yAxisScale = d3.scale.linear()
-                           .domain([0, d3.max(myData, function(d) {return d;})])
-                           .range([svgHeight , 0]);
+		
 		// create y axis
 		var yAxis = d3.svg.axis()
                       .scale(yAxisScale)
                       .orient("left")
                       .ticks(5);
+		
+		// create canvas
+		var canvas = d3.select("body")
+					   .append("svg")
+					   .attr("width",canvasWidth)
+					   .attr("height",canvasHeight)
+					   .attr("style","background-color:#ddd"); /* added some style*/
+			
+		canvas.append("g")
+			  .attr("class","axis")  // style axis via CSS
+			  .attr("transform","translate("+ (margin.left - 2) +"," + margin.bottom + ")")
+			  .call(yAxis);
+ 
+		var svg = canvas.append("g")
+						.attr("width",svgWidth)
+						.attr("height",svgHeight)
+						.attr("style","background-color:#ddd") /* added some style*/
+						.attr("transform","translate("+ margin.left +"," + margin.bottom + ")");
 					
 		//create rectangles	
 		svg.selectAll("rect")
@@ -107,11 +123,7 @@
 		   .attr("height", function(d){return(heightScale(d));})
 		   .append("title")     /*code for default tooltip */
 		   .text(function(d){return d});
-		 // generate the y axis
-		svg.append("g")
-		   .attr("class","axis")  // style axis via CSS
-		   .attr("transform","translate(35,0)")
-           .call(yAxis);
+		
 	 </script>
 	
 </body>
