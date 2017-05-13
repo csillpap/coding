@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<meta charset="utf-8">
+
+<head>
+	<style>
+		body {
+		  font: 16px sans-serif;
+		}
+	</style>
+	<script src="https://d3js.org/d3.v3.min.js"></script>
+</head>
+
+<body>
+	 <script>
+	 
+		//create variables for svg width height and spacing
+		var svgWidth = 500;
+		var svgHeight = 300;
+		var spacing= 2;
+		
+		//create array
+		var myData = [ 10, 15, 20, 30, 45, 50, 40, 45 ,50 , 40, 10, 15, 20, 30, 45, ];
+		myData.sort(d3.descending); // sort the graph in decending order
+		
+		// create scale
+		var heightScale = d3.scale.linear()
+                            .domain([0,d3.max(myData)])
+                            .range([0,svgHeight]); 
+		
+		// apply colors
+		var colorScale = d3.scale.linear()
+                           .domain([0,d3.max(myData)])
+                           .range(["blue","red"]);
+		
+		//apply values to svg
+		var svg = d3.select("body")
+					.append("svg")
+					.attr("width",500)
+					.attr("height",300)
+					.attr("style","background-color:#ddd"); /* added some style*/
+					
+		//create rectangles	
+		svg.selectAll("rect")
+		   .data(myData)
+		   .enter()
+		   .append("rect")  
+		   .attr("fill", function(d){return(colorScale(d));}) // replace the color with our color scale
+		   .attr("x", function(d, i) {
+				return i * (svgWidth / myData.length); /* multiply the index by the width  --keeps scale */
+				})
+		   .attr("y", function(d){return svgHeight - (heightScale(d));})   /* flip the chart */
+		   .attr("width", (svgWidth / myData.length) - spacing) /*keeps scale */
+		   .attr("height", function(d){return(heightScale(d));})
+		   .append("title")     /*code for default tooltip */
+		   .text(function(d){return d});
+	 </script>
+	
+</body>
+
+</html>
