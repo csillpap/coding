@@ -37,12 +37,17 @@
 			  {date: "2011-11-14T17:29:52Z", quantity: 1, total: 200, tip: 100, type: "visa"}
 			];
 			
-		// set up a filter to get all the transactions with a total equal to 90
+		// set up a filter to get numbers
 		var ndx = crossfilter(data);
 		var totalDim = ndx.dimension(function(d) { return d.total; });
 		var total_90 = totalDim.filter(90); // to find all the totals equal to 90
 		var total_90_101= totalDim.filter([90,101]); // to filter a range from 90 to 100
 		var total_3= totalDim.filter(function(d) { if (d%3===0) {return d;} } ); // get only items divisible by 3
+		
+		// set up a filter for strings
+		var typeDim  = ndx.dimension(function(d) {return d.type;});
+		var visa_filter = typeDim.filter("visa"); // find all entries where people used visa
+		var cash_filter = typeDim.filter("cash"); // find all entries where people used cash
 		
 	 </script>
 	
