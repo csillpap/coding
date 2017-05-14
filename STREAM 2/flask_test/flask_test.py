@@ -1,4 +1,5 @@
 from flask import Flask
+from flask import render_template
 
 app = Flask(__name__)
 
@@ -11,10 +12,7 @@ ages = {
 @app.route('/users/<user>')
 def users(user):
     age = ages.get(user)
-    if age:
-        return '%s is %s years old' % (user, age)
-    else:
-        abort(404)
+    return render_template('user.html', user=user, age=age)
 
 
 @app.route('/')
