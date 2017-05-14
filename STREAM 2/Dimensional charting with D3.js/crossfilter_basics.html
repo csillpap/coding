@@ -49,6 +49,9 @@
 		var visa_filter = typeDim.filter("visa"); // find all entries where people used visa
 		var cash_filter = typeDim.filter("cash"); // find all entries where people used cash
 		
+		var total = typeDim.group().reduceSum(function(d) {return d.total;}); // 
+		var cash_total = ndx.groupAll().reduceSum(function(d) {return d.total;}).value() // sum up the total column just for cash entries
+		
 	 </script>
 	
 </body>
