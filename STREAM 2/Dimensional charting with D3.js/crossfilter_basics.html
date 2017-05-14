@@ -3,10 +3,12 @@
 
 <head>
 	
-	<script type='text/javascript'    src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js></script>
+	<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js></script>
+	
 </head>
 
 <body>
+
 	 <script>
 		
 		var data = [
@@ -25,6 +27,10 @@
 			  {date: "2011-11-14T17:25:45Z", quantity: 2, total: 200, tip: 0, type: "cash"},
 			  {date: "2011-11-14T17:29:52Z", quantity: 1, total: 200, tip: 100, type: "visa"}
 			];
+			
+		var ndx = crossfilter(data);
+		var totalDim = ndx.dimension(function(d) { return d.total; });
+		var total_90 = totalDim.filter(90);
 		
 	 </script>
 	
