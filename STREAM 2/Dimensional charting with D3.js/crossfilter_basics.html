@@ -3,7 +3,7 @@
 
 <head>
 	
-	<script type='text/javascript' src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js></script>
+	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
 	
 </head>
 
@@ -28,9 +28,10 @@
 			  {date: "2011-11-14T17:29:52Z", quantity: 1, total: 200, tip: 100, type: "visa"}
 			];
 			
+		// set up a filter to get all the transactions with a total equal to 90
 		var ndx = crossfilter(data);
 		var totalDim = ndx.dimension(function(d) { return d.total; });
-		var total_90 = totalDim.filter(90);
+		var total_90 = totalDim.filter(90); // to find all the totals equal to 90
 		
 	 </script>
 	
