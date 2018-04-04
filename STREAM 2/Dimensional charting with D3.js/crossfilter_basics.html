@@ -1,8 +1,10 @@
 <!DOCTYPE html>
-<meta charset="utf-8">
+
+<html>
 
 <head>
-	
+
+	<meta charset="utf-8">
 	<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
 	
 </head>
@@ -43,7 +45,7 @@
 		//var total_90 = totalDim.filter(90); // to find all the totals equal to 90
 		//var total_90_101= totalDim.filter([90,101]); // to filter a range from 90 to 100
 		//var total_3= totalDim.filter(function(d) { if (d%3===0) {return d;} } ); // get only items divisible by 3
-		
+
 		// set up a filter for strings
 		var typeDim  = ndx.dimension(function(d) {return d.type;});
 		//var visa_filter = typeDim.filter("visa"); // find all entries where people used visa
